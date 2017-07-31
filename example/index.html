@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+	<head>
+		<title>新用户注册 -- 破林的博客</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+		<link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
+		<link href="css/register.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="../js/polinFormVerify.js"></script>
+	</head>
+	<body class="templatemo-bg-gray">
+		<div class="">
+			<div id="loginBox" style="">
+				<h1 id="h1title" class="margin-bottom-15">
+					<a href="https://wangsonglin.cn">破林的博客</a>
+					<span>P<b>olin</b>B<b>log</b></span>
+				</h1>
+				<form id="form" class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form" action="" method="post">				
+					<div class="form-group">
+						<div class="col-md-12">
+							<div class="input-group">
+								<span class="input-group-addon">&nbsp; 邮 &nbsp; 箱 &nbsp;</span>
+								<input type="text" name="email" class="form-control" id="email" placeholder="Email">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+							<div class="input-group">
+								<span class="input-group-addon">&nbsp;用&nbsp;户 &nbsp;名</span>
+								<input type="text" name="username" class="form-control" id="username" placeholder="Username">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+							<div class="input-group">
+								<span class="input-group-addon">&nbsp; 密 &nbsp; 码 &nbsp;</span>
+								<input type="password" name="password" class="form-control" id="password" placeholder="Password">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+							<div class="input-group">
+								<span class="input-group-addon">确认密码</span>
+								<input type="password" name="repassword" class="form-control" id="repassword" placeholder="repassword">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+							<div class="input-group">
+								<span class="input-group-addon">&nbsp;验&nbsp;证 &nbsp;码</span>
+								<input type="text" name="code" class="form-control" id="code" placeholder="验证码">
+								<span style="background:#fff;" class="input-group-addon"><img id="piccode" src="http://www.phpcms.cn/api.php?op=checkcode&code_len=4&font_size=14&width=84&height=24&font_color=&background=ffffff" alt="" /></span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+					  <div class="col-md-12">
+						<div class="">
+							<input name="dosubmit" id="dosubmit" type="submit" value="&nbsp;马&nbsp;上&nbsp;注&nbsp;册&nbsp;" class="btn btn-info">
+						</div>
+					  </div>
+					</div>
+				  </form>
+				<div class="text-center">
+					<a href="{U('member/index/login')}" class="templatemo-create-new">已有账号，去登录</a>	
+				</div>
+			</div>
+			<script type="text/javascript">
+				window.onload = function(){
+					$$.config({
+						IMG_PATH : 'images/',
+						"picCodeSrc":"http://www.phpcms.cn/api.php?op=checkcode&code_len=4&font_size=14&width=84&height=24&font_color=&background=ffffff"
+					}).init([
+						{'id':'email','lang':'邮箱','patt':'email',/* 'url':'https://wangsonglin.cn/', */ 'errMsg':'邮箱格式不正确','notice':'请输入邮箱'},
+						{'id':'username','lang':'用户名','patt':'username',/* 'url':'https://wangsonglin.cn/',*/ 'errMsg':'用户名格式不正确','notice':'请输入用户名'},
+						{'id':'password','lang':'密码','patt':'password','errMsg':'密码格式不正确','notice':'请输入密码'},
+						{'id':'repassword','lang':'重复密码','sameWith':'password','errMsg':'两次密码不相同','notice':'请再次输入密码'},
+						{'id':'code','lang':'验证码','patt':'notNull',/* 'url':'https://wangsonglin.cn/',*/ 'offsetRight':110,'errMsg':'验证码输入不正确','notice':'请输入验证码'},
+						//	{"id":"mobilecode","lang":"手机验证码","patt":"notNull","url":"","notice":"请输入手机验证码","errMsg":"手机验证码错误",
+						//		"ajaxKey":"code", 服务端 $_REQUEST['code']
+						//		"ajaxParams":{
+						//		"mobile":function(){ return _S.objs['mobile'].value; }, // 获取手机号
+						//		"piccode":function(){ return _S.objs['code'].value; }	// 获取图片验证码
+						//	}}
+					]).addListen(
+						_S.getObj({'id':'piccode'}),
+						'click',
+						function(){
+							_S.objs['piccode'].src = _S.Params.picCodeSrc+Math.random();
+						}
+					)
+					//.addListen(
+						// click 发送验证码
+					// );
+				}
+			</script>
+		</div>
+	</body>
+</html>
